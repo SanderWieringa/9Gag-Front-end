@@ -12,6 +12,11 @@ const postColumns = [
         headerName: "Title",
         width: 150,
     },
+    {
+        field: "photo",
+        headerName: "Photo",
+        width: 150,
+    },
 ];
 
 export const Post = () => {
