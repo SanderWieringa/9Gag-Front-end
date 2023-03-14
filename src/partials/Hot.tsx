@@ -8,18 +8,18 @@ const postColumns = [
       width: 150,
     },
     {
-        field: "title",
-        headerName: "Title",
-        width: 150,
+      field: "title",
+      headerName: "Title",
+      width: 150,
     },
     {
-        field: "photo",
-        headerName: "Photo",
-        width: 150,
+      field: "photo",
+      headerName: "Photo",
+      width: 150,
     },
 ];
 
-export const Post = () => {
+function Hot() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -32,7 +32,12 @@ export const Post = () => {
     }, []);
 
     return (
+      <section>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+        <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
         <div>
+          <div>
+          </div>
           <div style={{ height: 580, width: "100%" }}>
             <DataGrid
               getRowId={(r) => r.id}
@@ -42,5 +47,10 @@ export const Post = () => {
             />
           </div>
         </div>
+        </div>
+        </div>
+        </section>
       );
 };
+
+export default Hot;
