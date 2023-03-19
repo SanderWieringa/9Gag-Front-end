@@ -24,7 +24,7 @@ function Hot() {
 
     useEffect(() => {
         // GET request using fetch inside useEffect React hook
-        fetch('https://localhost:32768/api/Post')
+        fetch('http://localhost:8080/api/Post')
             .then(response => response.json())
             .then(json => setData(json))
     
