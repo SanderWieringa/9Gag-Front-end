@@ -10,6 +10,9 @@ const GoogleSignIn = () => {
   );
 
   useEffect(() => {
+    // console.log("clientid: ", process.env.VITE_REACT_APP_GOOGLE_CLIENT_ID)
+    
+    // console.log("here")
     /* global google */
     if (window.google) {
       google.accounts.id.initialize({
