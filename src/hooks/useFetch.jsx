@@ -7,6 +7,7 @@ const useFetch = (url) => {
 
   const handleGoogle = async (response) => {
     setLoading(true);
+    console.log("url: ", url)
     fetch(url, {
       method: "POST",
       headers: {
@@ -28,6 +29,7 @@ const useFetch = (url) => {
 
         throw new Error(data?.message || data);
       })
+      .then(console.log("user: ", localStorage.getItem("user")))
       .catch((error) => {
         setError(error?.message);
       });

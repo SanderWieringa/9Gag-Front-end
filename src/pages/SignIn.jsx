@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Header from '../partials/Header';
 import useFetch from '../hooks/useFetch';
-import dotenv from  'dotenv'
 
 function SignIn() {
   const { handleGoogle, loading, error } = useFetch(

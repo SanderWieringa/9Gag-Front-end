@@ -20,6 +20,7 @@ let DB = [];
  *  This function is used verify a google account
  */
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+console.log(GOOGLE_CLIENT_ID)
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 async function verifyGoogleToken(token) {
@@ -36,7 +37,7 @@ async function verifyGoogleToken(token) {
 
 app.post("/signup", async (req, res) => {
   try {
-    // console.log({ verified: verifyGoogleToken(req.body.credential) });
+    console.log("here");
     if (req.body.credential) {
       const verificationResponse = await verifyGoogleToken(req.body.credential);
 
@@ -57,7 +58,7 @@ app.post("/signup", async (req, res) => {
           lastName: profile?.family_name,
           picture: profile?.picture,
           email: profile?.email,
-          token: jwt.sign({ email: profile?.email }, "myScret", {
+          token: jwt.sign({ email: profile?.email }, process.env.JWT_SECRET, {
             expiresIn: "1d",
           }),
         },
