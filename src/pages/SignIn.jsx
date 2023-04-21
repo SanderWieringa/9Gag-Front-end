@@ -6,7 +6,7 @@ import useFetch from '../hooks/useFetch';
 
 function SignIn() {
   const { handleGoogle, loading, error } = useFetch(
-    "http://localhost:5152/login"
+    "https://localhost:44394/api/GoogleAuth/signin"
   );
 
   useEffect(() => {
