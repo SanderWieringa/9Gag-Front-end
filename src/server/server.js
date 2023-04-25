@@ -58,7 +58,7 @@ app.post("/api/GoogleAuth/signup", async (req, res) => {
           lastName: profile?.family_name,
           picture: profile?.picture,
           email: profile?.email,
-          token: jwt.sign({ email: profile?.email }, import.meta.env.JWT_SECRET, {
+          token: jwt.sign({ email: profile?.email }, "myScret", {
             expiresIn: "1d",
           }),
         },
@@ -98,7 +98,7 @@ app.post("/api/GoogleAuth/login", async (req, res) => {
           lastName: profile?.family_name,
           picture: profile?.picture,
           email: profile?.email,
-          token: jwt.sign({ email: profile?.email }, import.meta.env.JWT_SECRET, {
+          token: jwt.sign({ email: profile?.email }, process.env.JWT_SECRET, {
             expiresIn: "1d",
           }),
         },
