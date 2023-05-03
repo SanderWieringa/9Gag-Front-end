@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import useFetch from "./hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 
 function SignIn({ setLogIn }) {
   var isLoggedin = false;
 
   const { handleGoogle, loading, error } = useFetch(
-    "https://localhost:44394/api/GoogleAuth/google-response"
+    "https://localhost:44394/api/GoogleAuthentication/google-response"
   );
 
   useEffect(() => {

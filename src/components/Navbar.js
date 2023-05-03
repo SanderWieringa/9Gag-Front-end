@@ -17,6 +17,9 @@ const Navbar = () => {
       <Link to="/signin" style={{ padding: "10px" }}>
         Signin
       </Link>
+      <Link to="/createpost" style={{ padding: "10px" }}>
+        Create Post
+      </Link>
     </nav>
   );
 };

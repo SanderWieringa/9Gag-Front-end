@@ -7,6 +7,7 @@ import About from "./components/About";
 import Profile from "./components/Profile";
 import SignUp from "./components/Signup";
 import SignIn from "./components/Signin";
+import CreatePost from "./components/CreatePost";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(null);
@@ -32,6 +33,12 @@ function App() {
             <Route path='/profile' element={
               <Protected isLoggedIn={isLoggedIn}>
                 <Profile />
+              </Protected>
+              }
+            />
+            <Route path='/createpost' element={
+              <Protected isLoggedIn={isLoggedIn}>
+                <CreatePost />
               </Protected>
               }
             />

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import useFetch from "./hooks/useFetch";
+import useFetch from "../hooks/useFetch";
 
 function SignUp() {
     const { handleGoogle, loading, error } = useFetch(
-      "https://localhost:44394/api/GoogleAuth/signup"
+      "https://localhost:44386/api/GoogleAuthentication/signup"
     );
 
     useEffect(() => {
