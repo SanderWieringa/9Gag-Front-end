@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 
 import Header from '../partials/Header';
 import useFetch from '../hooks/useFetch';
 
-function SignIn() {
+function SignIn({ setIsLoggedInFromChild }) {
+
   const { handleGoogle, loading, error } = useFetch(
     "https://localhost:44394/api/GoogleAuth/google-response"
   );
@@ -55,6 +57,14 @@ function SignIn() {
                       {error && <p style={{ color: "red" }}>{error}</p>}
                       {loading ? <div>Loading....</div> : <div id="loginDiv"></div>}
                     </div>
+                    {/* <div>
+                      <GoogleLogin
+                        clientId={import.meta.env.VITE_REACT_APP_GOOGLE_CLIENT_ID}
+                        buttonText="Google Login"
+                        onSuccess={useFetch("https://localhost:44394/api/GoogleAuth/google-response")}
+                        onFailure={useFetch("https://localhost:44394/api/GoogleAuth/google-response")}
+                      />
+                    </div> */}
                   </div>
                 </form>
                 <div className="flex items-center my-6">
