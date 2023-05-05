@@ -17,15 +17,11 @@ function App() {
   const logOut = () => {
     setisLoggedIn(false);
   };
+
   return (
     <BrowserRouter>
       <div>
         <Navbar />
-          {isLoggedIn ? (
-          <button onClick={logOut}>Logout</button>
-          ) : (
-          <button onClick={setLogIn}>Login</button>
-          )}
           <Routes>
             <Route path='/signin' element={<SignIn setLogIn={setLogIn}/>} />
             <Route path='/signup' element={<SignUp />} />

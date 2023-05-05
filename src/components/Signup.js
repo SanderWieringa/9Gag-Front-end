@@ -4,6 +4,8 @@ import useFetch from "../hooks/useFetch";
 
 function SignUp() {
     const { handleGoogle, loading, error } = useFetch(
+      //https://localhost:44386/api/GoogleAuthentication/signup
+      //https://localhost:44394/api/GoogleAuthorization/signup
       "https://localhost:44394/api/GoogleAuthorization/signup"
     );
 
