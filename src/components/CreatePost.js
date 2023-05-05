@@ -1,31 +1,48 @@
 import React, { useState }from 'react';
-import { Link } from 'react-router-dom';
 
 const CreatePost = () => {
-    const [post, setPost] = useState(null);
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {value: ''};
-
-    //     this.handleChange = this.handleChange.bind(this);
-    //     this.handleSubmit = this.handleSubmit.bind(this);
-    // }
+    const [post, setPost] = useState();
+    const [selectedFile, setSelectedFile] = useState();
+    var reader = new FileReader();
 
     const handleChange = (event) => {
+        
         setPost({value: event.target.value});
-        console.log("change1")
+        //console.log("event.target.value: ", event.target.value)
+        //console.log("change1")
+        // console.log("post.title: ", post.title)
+        // console.log("post.photo: ", post.photo)
     }
+
+    const handleFileChange = (event) => {
+		setSelectedFile(event.target.files[0]);
+	};
+
+    const getBase64 = (file) => {
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            setSelectedFile(reader.result)
+            //console.log(reader.result);
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+     }
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("change2")
+        //console.log("change2")
+
+        getBase64(selectedFile)
 
         const newPost = {
-            title: this.state.value,
-            photo: this.state.value
+            title: post,
+            photo: selectedFile
         };
 
-        console.log(this.state.value)
+        //console.log(this.state.value)
+        //console.log("newPost.title: ", newPost.title)
+        //console.log("newPost.photo: ", newPost.photo)
 
         const requestOptions = {
             method: "POST",
@@ -34,7 +51,7 @@ const CreatePost = () => {
             body: JSON.stringify(newPost),
         };
       
-        fetch("https://localhost:32768/api/Post", requestOptions)
+        fetch("https://localhost:44329/api/Post", requestOptions)
         .then(function (response) {
             return response.json();
         })
@@ -64,13 +81,13 @@ const CreatePost = () => {
                             <div className="flex flex-wrap -mx-3 mb-4">
                                 <div className="w-full px-3">
                                 <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">Title <span className="text-red-600"></span></label>
-                                <input type="text" value={post} onChange={handleChange} className="form-input w-full text-gray-300" placeholder="This is a title" required />
+                                <input type="text" onChange={handleChange} className="form-input w-full text-gray-300" placeholder="This is a title" required />
                                 </div>
                             </div>
                             <div className="flex flex-wrap -mx-3 mb-4">
                                 <div className="w-full px-3">
                                 <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">File <span className="text-red-600"></span></label>
-                                <input type="file"/>
+                                <input type="file" onChange={handleFileChange}/>
                                 </div>
                             </div>
                             <div className="flex flex-wrap -mx-3 mt-6">

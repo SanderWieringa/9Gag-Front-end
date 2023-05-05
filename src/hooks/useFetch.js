@@ -25,7 +25,7 @@ const useFetch = (url) => {
       localStorage.setItem("user", JSON.stringify(data?.token));
       setLoading(false);
       setData(data)
-      console.log("/profile")
+      //console.log("/profile")
       navigate("/profile")
     })
     .catch((error) => {
