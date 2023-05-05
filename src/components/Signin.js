@@ -6,7 +6,7 @@ function SignIn({ setLogIn }) {
   var isLoggedin = false;
 
   const { handleGoogle, loading, error } = useFetch(
-    "https://localhost:44394/api/GoogleAuthentication/google-response"
+    "https://localhost:44394/api/GoogleAuthorization/google-response"
   );
 
   useEffect(() => {
