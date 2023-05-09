@@ -26,6 +26,7 @@ const Home = () => {
         // GET request using fetch inside useEffect React hook
         // https://localhost:44329/api/Post
         // http://acmegag.com/api/Post
+        // test
         fetch('https://localhost:44329/api/Post')
             .then(response => response.json())
             .then(json => setData(json))
