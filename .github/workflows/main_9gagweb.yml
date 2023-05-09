@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: '9GagWeb'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_627E030559194083A9D3C1441E01CEBE }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D1EEC1F0DA46470B88743FED449AF528 }}
           package: .
