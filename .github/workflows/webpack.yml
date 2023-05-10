@@ -15,7 +15,6 @@ jobs:
 
     defaults:
       run:
-        shell: bash
         working-directory: ../../9Gag-Front-end
 
     steps:
