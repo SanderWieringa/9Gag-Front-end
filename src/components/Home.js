@@ -27,6 +27,7 @@ const Home = () => {
         // https://localhost:44329/api/Post
         // http://acmegag.com/api/Post
         // test
+        // test2
         fetch('https://localhost:44329/api/Post')
             .then(response => response.json())
             .then(json => setData(json))
