@@ -15,7 +15,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ..\..\9Gag-Front-end
+        working-directory: ..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\C:\Users\sande\Documents\GitHub\9Gag-Front-end
 
     steps:
       - uses: actions/checkout@v2
