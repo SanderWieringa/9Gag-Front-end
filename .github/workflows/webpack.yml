@@ -13,9 +13,9 @@ jobs:
   build:
     runs-on: windows-latest
 
-    defaults:
-      run:
-        working-directory: ..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\C:\Users\sande\Documents\GitHub\9Gag-Front-end
+    # defaults:
+    #   run:
+    #     working-directory: ..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\..\C:\Users\sande\Documents\GitHub\9Gag-Front-end
 
     steps:
       - uses: actions/checkout@v2
