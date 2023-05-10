@@ -16,8 +16,8 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./
-        
+        working-directory: ./9GAG-FRONT-END
+
     steps:
       - uses: actions/checkout@v2
 
