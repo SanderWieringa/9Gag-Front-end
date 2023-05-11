@@ -6,7 +6,10 @@ function SignIn({ setLogIn }) {
   var isLoggedin = false;
 
   const { handleGoogle, loading, error } = useFetch(
-    "https://localhost:44394/api/GoogleAuthorization/google-response"
+    // https://localhost:44394/api/GoogleAuthorization/google-response
+    // https://localhost:7146/api/GoogleAuthorization/google-response
+    // http://acmegag.com/api/GoogleAuthorization/google-response
+    "http://acmegag.com/api/GoogleAuthorization/google-response"
   );
 
   useEffect(() => {
