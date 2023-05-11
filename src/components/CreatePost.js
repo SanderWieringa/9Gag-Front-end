@@ -50,8 +50,10 @@ const CreatePost = () => {
             mode: "cors",
             body: JSON.stringify(newPost),
         };
-      
-        fetch("https://localhost:44329/api/Post", requestOptions)
+        // https://localhost:44329/api/Post
+        // https://localhost:7238/api/Post
+        // http://acmegag.com/api/Post
+        fetch("http://acmegag.com/api/Post", requestOptions)
         .then(function (response) {
             return response.json();
         })
