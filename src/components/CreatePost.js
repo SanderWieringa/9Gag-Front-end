@@ -7,7 +7,7 @@ const CreatePost = () => {
 
     const handleChange = (event) => {
         
-        setPost({value: event.target.value});
+        setPost(event.target.value);
         //console.log("event.target.value: ", event.target.value)
         //console.log("change1")
         // console.log("post.title: ", post.title)
@@ -16,6 +16,7 @@ const CreatePost = () => {
 
     const handleFileChange = (event) => {
 		setSelectedFile(event.target.files[0]);
+        console.log("event.target.files[0]: ", event.target.files[0])
 	};
 
     const getBase64 = (file) => {
@@ -32,21 +33,25 @@ const CreatePost = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         //console.log("change2")
-
-        getBase64(selectedFile)
+        console.log("preSelectedFile: ", selectedFile)
+        //getBase64(selectedFile)
+        console.log("postSelectedFile: ", selectedFile)
 
         const newPost = {
             title: post,
             photo: selectedFile
         };
-
+        console.log("newPost: ", newPost)
         //console.log(this.state.value)
         //console.log("newPost.title: ", newPost.title)
         //console.log("newPost.photo: ", newPost.photo)
 
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": 'Bearer ' + localStorage.getItem("user")
+            },
             mode: "cors",
             body: JSON.stringify(newPost),
         };

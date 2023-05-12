@@ -8,9 +8,6 @@ const Navbar = () => {
       <Link to="/profile" style={{ padding: "10px" }}>
         Profile
       </Link>
-      <Link to="/about" style={{ padding: "10px" }}>
-        About
-      </Link>
       <Link to="/signup" style={{ padding: "10px" }}>
         Signup
       </Link>
