@@ -10,8 +10,8 @@ env:
   DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
   AKS_RESOURCE_GROUP: 9Gag-Backend
   AKS_CLUSTER_NAME: 9Gag-Backend
-  K8S_NAMESPACE: your-kubernetes-namespace
-  K8S_DEPLOYMENT_NAME: your-kubernetes-deployment-name
+  K8S_NAMESPACE: default
+  K8S_DEPLOYMENT_NAME: front-end-depl
 
 jobs:
   build-and-deploy:
