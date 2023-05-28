@@ -2,12 +2,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Protected from "./components/Protected";
-import Home from "./components/Home";
 import About from "./components/About";
 import Profile from "./components/Profile";
 import SignUp from "./components/Signup";
 import SignIn from "./components/Signin";
 import CreatePost from "./components/CreatePost";
+import Home from "./components/Home";
 
 function App() {
   const [isLoggedIn, setisLoggedIn] = useState(null);
