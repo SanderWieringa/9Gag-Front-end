@@ -35,28 +35,20 @@ jobs:
           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
           docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
 
-      - name: Zip build directory
-        run: zip -r app.zip build/
-
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Set up Azure Kubernetes CLI
+        uses: azure/aks-set-context@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ env.AKS_RESOURCE_GROUP }}
+          cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+
+      - name: Deploy to AKS
         run: |
+          az acr login --name $DOCKER_HUB_USERNAME
           az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }}
-          mkdir -p ~/.kube/
-          cp $HOME/.azure/aksServiceAccount.yaml ~/.kube/config
-
-      - name: Upload app.zip to AKS
-        run: |
           kubectl apply -f deployment.yaml -n ${{ env.K8S_NAMESPACE }}
-
-      - name: Unzip app.zip on AKS
-        run: |
-          kubectl exec -n ${{ env.K8S_NAMESPACE }} $(kubectl get pods -n ${{ env.K8S_NAMESPACE }} -l "app.kubernetes.io/name=${{ env.K8S_DEPLOYMENT_NAME }}" -o jsonpath="{.items[0].metadata.name}") -- sh -c 'unzip -o /app.zip -d /usr/share/nginx/html/'
-
-      - name: Restart pods on AKS
-        run: |
-          kubectl rollout restart deployment/${{ env.K8S_DEPLOYMENT_NAME }} -n ${{ env.K8S_NAMESPACE }}
