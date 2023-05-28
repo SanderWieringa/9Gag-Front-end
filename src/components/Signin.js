@@ -9,7 +9,7 @@ function SignIn({ setLogIn }) {
     // https://localhost:44394/api/GoogleAuthorization/google-response
     // https://localhost:7146/api/GoogleAuthorization/google-response
     // http://acmegag.com/api/GoogleAuthorization/google-response
-    "http://acmegag.com/api/GoogleAuthorization/google-response"
+    "https://localhost:7146/api/GoogleAuthorization/google-response"
   );
 
   useEffect(() => {

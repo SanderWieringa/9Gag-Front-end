@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: 9gag-front-end
+  template:
+    metadata:
+      labels:
+        app: 9gag-front-end
+    spec:
+      containers:
+        - name: 9gag-front-end
+          image: sanderwieringa/9gag-front-end:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: 9gag-front-end
+spec:
+  selector:
+    app: 9gag-front-end
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: LoadBalancer
+  
