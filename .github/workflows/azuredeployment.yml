@@ -51,26 +51,30 @@ jobs:
         run: |
            curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
            
-      - name: Deploy to AKS
-        uses: azure/aks-set-context@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          cluster-name: ${{ env.AKS_CLUSTER_NAME }}
-          resource-group: ${{ env.AKS_RESOURCE_GROUP }}
-
-      - name: Deploy to AKS
-        run: |
-          az acr login --name ${{ env.REGISTRY_NAME }}
-
-          kubectl apply -f kubernetes/deployment.yaml -n ${{ env.AKS_NAMESPACE }}
-
-#       - name: Azure Login
-#         uses: azure/login@v1
+           
+           
+#       - name: Deploy to AKS
+#         uses: azure/aks-set-context@v1
 #         with:
 #           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#           cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+#           resource-group: ${{ env.AKS_RESOURCE_GROUP }}
 
-#       - name: Configure AKS credentials
-#         run: az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }}
+#       - name: Deploy to AKS
+#         run: |
+#           az acr login --name ${{ env.REGISTRY_NAME }}
+
+#           kubectl apply -f kubernetes/deployment.yaml -n ${{ env.AKS_NAMESPACE }}
+
+
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Configure AKS credentials
+        run: az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }}
 
 #       - name: Deploy to AKS
 #         run: kubectl apply -f kubernetes/deployment.yaml -n ${{ env.AKS_NAMESPACE }}
