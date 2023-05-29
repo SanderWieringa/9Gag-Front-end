@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: front-end
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: front-end
@@ -21,12 +21,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: front-end
+  name: front-end-service
 spec:
   selector:
     app: front-end
   ports:
-    - port: 3000
+    - protocol: TCP
+      port: 3000
       targetPort: 3000
   type: LoadBalancer
-  
