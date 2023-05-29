@@ -35,13 +35,19 @@ jobs:
           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
           docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
 
-      - name: Deploy to AKS
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set up Azure Kubernetes CLI
         uses: azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           resource-group: ${{ env.AKS_RESOURCE_GROUP }}
           cluster-name: ${{ env.AKS_CLUSTER_NAME }}
 
-#       - name: Update deployment image
-#         run: |
-#           kubectl set image deployment/${{ env.K8S_DEPLOYMENT_NAME }} *=$DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA -n ${{ env.K8S_NAMESPACE }}
+      - name: Deploy to AKS
+        run: |
+          az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }} 
+          kubectl apply -f deployment.yaml
