@@ -1,52 +1,52 @@
-name: Build and Deploy
+# name: Build and Deploy
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-env:
-  DOCKER_HUB_USERNAME: sanderwieringa
-  DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
-  AKS_RESOURCE_GROUP: 9Gag-Backend
-  AKS_CLUSTER_NAME: 9Gag-Backend
-  K8S_NAMESPACE: default
-  K8S_DEPLOYMENT_NAME: front-end-depl
+# env:
+#   DOCKER_HUB_USERNAME: sanderwieringa
+#   DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+#   AKS_RESOURCE_GROUP: 9Gag-Backend
+#   AKS_CLUSTER_NAME: 9Gag-Backend
+#   K8S_NAMESPACE: default
+#   K8S_DEPLOYMENT_NAME: front-end-depl
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
+#       - name: Install dependencies
+#         run: npm install
 
-      - name: Build Docker image
-        run: |
-          docker build -t $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA .
-          docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
-          docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
+#       - name: Build Docker image
+#         run: |
+#           docker build -t $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA .
+#           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+#           docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+#       - name: Azure Login
+#         uses: azure/login@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set up Azure Kubernetes CLI
-        uses: azure/aks-set-context@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ env.AKS_RESOURCE_GROUP }}
-          cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+#       - name: Set up Azure Kubernetes CLI
+#         uses: azure/aks-set-context@v1
+#         with:
+#           creds: ${{ secrets.AZURE_CREDENTIALS }}
+#           resource-group: ${{ env.AKS_RESOURCE_GROUP }}
+#           cluster-name: ${{ env.AKS_CLUSTER_NAME }}
 
-      - name: Deploy to AKS
-        run: |
-          kubectl apply -f kubernetes/deployment.yaml
+#       - name: Deploy to AKS
+#         run: |
+#           kubectl apply -f kubernetes/deployment.yaml
