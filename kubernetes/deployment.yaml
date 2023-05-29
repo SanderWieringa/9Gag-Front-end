@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: front-end
+  name: react-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: front-end
+      app: react-app
   template:
     metadata:
       labels:
-        app: front-end
+        app: react-app
     spec:
       containers:
-        - name: front-end
-          image: sanderwieringa/front-end:latest
+        - name: react-app
+          image: sanderwieringa/react-app:latest
           ports:
             - containerPort: 3000
 ---
@@ -24,7 +24,7 @@ metadata:
   name: front-end-service
 spec:
   selector:
-    app: front-end
+    app: react-app
   ports:
     - protocol: TCP
       port: 3000
