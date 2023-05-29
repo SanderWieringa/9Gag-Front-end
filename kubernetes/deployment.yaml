@@ -17,9 +17,9 @@ spec:
           image: sanderwieringa.azurecr.io/react-app:latest
           resources:
             requests:
-              cpu: "0.5" # Requesting 0.5 CPU units
+              cpu: "2" # Requesting 0.5 CPU units
             limits:
-              cpu: "1"   # Limiting to 1 CPU unit
+              cpu: "4"   # Limiting to 1 CPU unit
           ports:
             - containerPort: 3000
 
