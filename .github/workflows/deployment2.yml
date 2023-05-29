@@ -12,6 +12,7 @@ env:
   AKS_CLUSTER_NAME: 9Gag-Backend
   K8S_NAMESPACE: default
   K8S_DEPLOYMENT_NAME: front-end-depl
+  AKS_CLUSTER_NAME_FRONTEND: 9Gag-Front-end
 
 jobs:
   build-and-deploy:
@@ -49,5 +50,5 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }} 
+          az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME_FRONTEND }}
           kubectl apply -f deployment2.yaml
