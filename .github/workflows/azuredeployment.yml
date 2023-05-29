@@ -7,7 +7,7 @@ on:
 
 env:
   IMAGE_NAME: front-end
-  REGISTRY_NAME: sanderwieringa.azurecr.io
+  REGISTRY_NAME: sanderwieringa
   AKS_RESOURCE_GROUP: 9Gag-Backend
   AKS_CLUSTER_NAME: 9Gag-Backend
   AKS_NAMESPACE: default
