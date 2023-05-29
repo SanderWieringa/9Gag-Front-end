@@ -36,7 +36,7 @@ jobs:
           docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
 
       - name: Azure Login
-        uses: azure/actions/login@master
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
