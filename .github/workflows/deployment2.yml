@@ -29,14 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build and Zip app
-        run: |
-          npm run build
-          zip -r app.zip build/
-
-      - name: Unzip app
-        run: unzip app.zip -d app
-
       - name: Build Docker image
         run: |
           docker build -t $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA .
