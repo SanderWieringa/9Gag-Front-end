@@ -49,5 +49,4 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }} 
           kubectl apply -f deployment.yaml
