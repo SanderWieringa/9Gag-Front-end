@@ -12,7 +12,6 @@ env:
   AKS_CLUSTER_NAME: 9Gag-Backend
   K8S_NAMESPACE: default
   K8S_DEPLOYMENT_NAME: front-end-depl
-  AKS_CLUSTER_NAME_FRONTEND: 9Gag-Front-end
 
 jobs:
   build-and-deploy:
@@ -36,18 +35,13 @@ jobs:
           docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
           docker push $DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Set up Azure Kubernetes CLI
+      - name: Deploy to AKS
         uses: azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           resource-group: ${{ env.AKS_RESOURCE_GROUP }}
           cluster-name: ${{ env.AKS_CLUSTER_NAME }}
 
-      - name: Deploy to AKS
+      - name: Update deployment image
         run: |
-          kubectl apply -f ./.github/workflows/deployment2.yaml
+          kubectl set image deployment/${{ env.K8S_DEPLOYMENT_NAME }} *=$DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA -n ${{ env.K8S_NAMESPACE }}
