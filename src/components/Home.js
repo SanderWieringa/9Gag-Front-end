@@ -32,6 +32,7 @@ const Home = () => {
         // fix 
         // fix 22
         // fix 1
+        // fix 8
         // fetch('https://localhost:44329/api/Post')
         //     .then(response => response.json())
         //     .then(json => setData(json))
