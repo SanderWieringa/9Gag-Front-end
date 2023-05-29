@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: front-end
+  IMAGE_NAME: react-app
   REGISTRY_NAME: sanderwieringa
   AKS_RESOURCE_GROUP: 9Gag-Backend
   AKS_CLUSTER_NAME: 9Gag-Backend
