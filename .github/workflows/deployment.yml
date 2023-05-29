@@ -52,3 +52,4 @@ jobs:
           az acr login --name $DOCKER_HUB_USERNAME
           az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }}
           kubectl apply -f deployment.yaml -n ${{ env.K8S_NAMESPACE }}
+
