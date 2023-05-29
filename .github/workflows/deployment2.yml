@@ -50,6 +50,4 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          az account set --subscription a710b13c-3841-4d66-b9a4-377b2fd9817f
-          az aks get-credentials --resource-group ${{ env.AKS_RESOURCE_GROUP }} --name ${{ env.AKS_CLUSTER_NAME }}
           kubectl apply -f deployment2.yaml
