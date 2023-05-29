@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: react-app
-          image: sanderwieringa/react-app:latest
+          image: sanderwieringa.azurecr.io/react-app:latest
           ports:
             - containerPort: 3000
 ---
