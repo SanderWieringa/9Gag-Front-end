@@ -50,4 +50,4 @@ jobs:
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f .github/workflows/deployment2.yaml
+          kubectl apply -f ./.github/workflows/deployment2.yaml
