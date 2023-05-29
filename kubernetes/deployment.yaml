@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  name: react-app-depl
 spec:
   replicas: 1
   selector:
@@ -21,10 +21,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: front-end-service
+  name: front-end-loadbalancer
 spec:
   selector:
-    app: react-app
+    app: react-app-loadbalancer
   ports:
     - protocol: TCP
       port: 3000
