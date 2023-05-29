@@ -15,11 +15,6 @@ spec:
       containers:
         - name: react-app
           image: sanderwieringa.azurecr.io/react-app:latest
-          resources:
-            requests:
-              cpu: "4" # Requesting 0.5 CPU units
-            limits:
-              cpu: "8"   # Limiting to 1 CPU unit
           ports:
             - containerPort: 3000
 
