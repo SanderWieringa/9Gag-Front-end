@@ -12,6 +12,7 @@ env:
   AKS_CLUSTER_NAME: 9Gag-Backend
   AKS_NAMESPACE: default
   AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+  LOGIN_SERVER: sanderwieringa.azurecr.io
 
 jobs:
   build-and-deploy:
@@ -41,8 +42,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build . -t ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          docker push ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker build . -t ${{ env.LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          docker push ${{ env.LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
 #       - name: Set up Azure CLI
 #         uses: azure/CLI@v1
