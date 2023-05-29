@@ -42,6 +42,6 @@ jobs:
           resource-group: ${{ env.AKS_RESOURCE_GROUP }}
           cluster-name: ${{ env.AKS_CLUSTER_NAME }}
 
-      - name: Update deployment image
-        run: |
-          kubectl set image deployment/${{ env.K8S_DEPLOYMENT_NAME }} *=$DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA -n ${{ env.K8S_NAMESPACE }}
+#       - name: Update deployment image
+#         run: |
+#           kubectl set image deployment/${{ env.K8S_DEPLOYMENT_NAME }} *=$DOCKER_HUB_USERNAME/react-app:$GITHUB_SHA -n ${{ env.K8S_NAMESPACE }}
