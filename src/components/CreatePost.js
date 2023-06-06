@@ -77,6 +77,8 @@ const CreatePost = () => {
                         <h1 className="h1">9gag create post page.</h1>
                     </div>
 
+                    {/* demo */}
+
                     {/* Form */}
                     <div className="max-w-sm mx-auto">
                         <form onSubmit={handleSubmit}>
