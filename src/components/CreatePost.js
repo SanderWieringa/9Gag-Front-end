@@ -52,36 +52,14 @@ const CreatePost = () => {
             return;
         }
 
-        // const headers = {
-        //     'Content-Type': 'multipart/form-data',
-        // }
-
-        // const requestOptions = {
-        //     method: "POST",
-        //     headers: { "Content-Type": "application/json" },
-        //     mode: "cors",
-        //     body: JSON.stringify(formData)
-        // };
-
         // https://localhost:44329/api/Post
         // https://localhost:7238/api/Post
         // http://acmegag.com/api/Post
 
-        console.log("values.title: ", values.title)
-        // console.log("values.imageName: ", values.imageName)
-        console.log("values.imageFile: ", values.imageFile)
-
         const formData = new FormData()
         formData.append('Title', values.title)
-        // formData.append('ImageName', values.imageName)
         formData.append('ImageFile', values.imageFile)
 
-        for (const entry of formData.entries()) {
-            console.log("entry: ", entry);
-          }
-        console.log("formData.Title: ", formData.title)
-        // console.log("formData.imageName: ", formData.imageName)
-        console.log("formData.imageFile: ", formData.imageFile)
 
         const headers = {
             'Content-Type': 'multipart/form-data',
@@ -93,21 +71,11 @@ const CreatePost = () => {
         })
         .then((response) => {
             console.log('File uploaded successfully:', response.data);
-            // Perform any additional actions on successful upload
-          })
-        .then((response) => {
             setPost(response.data);
         })
         .catch((error) => {
             console.error('Error uploading file:', error);
-            // Handle the error appropriately
-          });
-        // .then(function (response) {
-        //     return response.json();
-        // })
-        // .catch(function (error) {
-        //     console.log(error);
-        // });
+        });
     }
     
     return (
