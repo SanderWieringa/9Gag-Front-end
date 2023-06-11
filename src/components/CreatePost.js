@@ -60,11 +60,17 @@ const CreatePost = () => {
         formData.append('Title', values.title)
         formData.append('ImageFile', values.imageFile)
 
+        var unfilteredToken = localStorage.getItem("user")
+        var token = unfilteredToken.replace(/"/g, '');
 
         const headers = {
             'Content-Type': 'multipart/form-data',
-            'accept': 'text/plain'
+            'accept': 'text/plain',
+            'Authorization': 'bearer ' + token
         }
+
+        console.log("headers: ", headers)
+        console.log("headers.Authorization: ", headers.Authorization)
 
         axios.post('https://localhost:44329/api/Post', formData, {
             headers: headers
