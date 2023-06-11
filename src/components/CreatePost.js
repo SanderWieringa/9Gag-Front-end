@@ -1,64 +1,86 @@
 import React, { useState }from 'react';
+import axios from "axios";
+
+const defaultImageSrc = '/img/default.svg'
+
+const initialFieldValues = {
+    title: '',
+    // imageName:'',
+    imageSrc: defaultImageSrc,
+    imageFile: null,
+}
 
 const CreatePost = () => {
-    const [post, setPost] = useState();
-    const [selectedFile, setSelectedFile] = useState();
-    var reader = new FileReader();
+    const [values, setValues] = useState(initialFieldValues)
+    const [post, setPost] = useState()
 
-    const handleChange = (event) => {
-        
-        setPost({value: event.target.value});
-        //console.log("event.target.value: ", event.target.value)
-        //console.log("change1")
-        // console.log("post.title: ", post.title)
-        // console.log("post.photo: ", post.photo)
+    const handleInputChange = e => {
+        const { name, value} = e.target;
+        setValues({
+            ...values,
+            [name]: value
+        })
     }
 
-    const handleFileChange = (event) => {
-		setSelectedFile(event.target.files[0]);
-	};
+    const showPreview = e => {
+        if(e.target.files && e.target.files[0]){
+            let imageFile = e.target.files[0];
+            const reader = new FileReader();
+            reader.onload = x => {
+                setValues({
+                    ...values,
+                    imageFile,
+                    imageSrc : x.target.result
+                })
+            }
+            reader.readAsDataURL(imageFile)
+        }
+        else{
+            setValues({
+                ...values,
+                imageFile: null,
+                imageSrc: defaultImageSrc
+            })
+        }
+    }
 
-    const getBase64 = (file) => {
-        reader.readAsDataURL(file);
-        reader.onload = function () {
-            setSelectedFile(reader.result)
-            //console.log(reader.result);
-        };
-        reader.onerror = function (error) {
-            console.log('Error: ', error);
-        };
-     }
-    
     const handleSubmit = (event) => {
         event.preventDefault();
-        //console.log("change2")
 
-        getBase64(selectedFile)
+        if (!values.imageFile) {
+            console.error('No file selected');
+            return;
+        }
 
-        const newPost = {
-            title: post,
-            photo: selectedFile
-        };
-
-        //console.log(this.state.value)
-        //console.log("newPost.title: ", newPost.title)
-        //console.log("newPost.photo: ", newPost.photo)
-
-        const requestOptions = {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            mode: "cors",
-            body: JSON.stringify(newPost),
-        };
         // https://localhost:44329/api/Post
         // https://localhost:7238/api/Post
         // http://acmegag.com/api/Post
-        fetch("http://acmegag.com/api/Post", requestOptions)
-        .then(function (response) {
-            return response.json();
+
+        const formData = new FormData()
+        formData.append('Title', values.title)
+        formData.append('ImageFile', values.imageFile)
+
+        var unfilteredToken = localStorage.getItem("user")
+        var token = unfilteredToken.replace(/"/g, '');
+
+        const headers = {
+            'Content-Type': 'multipart/form-data',
+            'accept': 'text/plain',
+            'Authorization': 'bearer ' + token
+        }
+
+        console.log("headers: ", headers)
+        console.log("headers.Authorization: ", headers.Authorization)
+
+        axios.post('https://localhost:44329/api/Post', formData, {
+            headers: headers
         })
-        .catch(function (error) {
-            console.log(error);
+        .then((response) => {
+            console.log('File uploaded successfully:', response.data);
+            setPost(response.data);
+        })
+        .catch((error) => {
+            console.error('Error uploading file:', error);
         });
     }
     
@@ -81,17 +103,18 @@ const CreatePost = () => {
 
                     {/* Form */}
                     <div className="max-w-sm mx-auto">
+                    <img src={values.imageSrc} />
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-wrap -mx-3 mb-4">
                                 <div className="w-full px-3">
                                 <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">Title <span className="text-red-600"></span></label>
-                                <input type="text" onChange={handleChange} className="form-input w-full text-gray-300" placeholder="This is a title" required />
+                                <input type="text" name ="title" value={values.title} onChange={handleInputChange} className="form-input w-full text-gray-300" placeholder="This is a title" required />
                                 </div>
                             </div>
                             <div className="flex flex-wrap -mx-3 mb-4">
                                 <div className="w-full px-3">
                                 <label className="block text-gray-300 text-sm font-medium mb-1" htmlFor="full-name">File <span className="text-red-600"></span></label>
-                                <input type="file" onChange={handleFileChange}/>
+                                <input type="file" accept="image/*" onChange={showPreview}/>
                                 </div>
                             </div>
                             <div className="flex flex-wrap -mx-3 mt-6">

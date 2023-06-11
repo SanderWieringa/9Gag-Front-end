@@ -33,9 +33,9 @@ function App() {
               }
             />
             <Route path='/createpost' element={
-              <Protected isLoggedIn={isLoggedIn}>
+              //<Protected isLoggedIn={isLoggedIn}>
                 <CreatePost />
-              </Protected>
+              //</Protected>
               }
             />
             <Route path ='/about' element={<About />} />

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { DataGrid } from "@material-ui/data-grid";
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -22,22 +21,6 @@ const Home = () => {
     
     fetchData();
     }, []);
-
-    //useEffect(() => {
-        // GET request using fetch inside useEffect React hook
-        // https://localhost:44329/api/Post
-        // https://localhost:7238/api/Post
-        // http://acmegag.com/api/Post
-        // test
-        // fix 
-        // fix 22
-        // fetch('https://localhost:44329/api/Post')
-        //     .then(response => response.json())
-        //     .then(json => setData(json))
-        
-    
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    //}, []);
 
     return (
         <><h1>Home page</h1><section>
@@ -63,14 +46,6 @@ const Home = () => {
                                 ))}
                             </tbody>
                         </table>
-
-
-
-                            {/* <DataGrid
-                                getRowId={(r) => r.id}
-                                rows={data}
-                                columns={postColumns}
-                                pageSize={9} /> */}
                         </div>
                     </div>
                 </div>

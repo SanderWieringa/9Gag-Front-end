@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: react-app-depl
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: react-app
@@ -17,11 +17,13 @@ spec:
           image: sanderwieringa.azurecr.io/react-app:latest
           ports:
             - containerPort: 3000
+
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: front-end-loadbalancer
+  name: react-app-loadbalancer
 spec:
   selector:
     app: react-app-loadbalancer
