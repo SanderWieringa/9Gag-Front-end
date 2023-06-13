@@ -10,7 +10,7 @@ function SignIn({ setLogIn }) {
     // https://localhost:7146/api/GoogleAuthorization/google-response
     // http://acmegag.com/api/GoogleAuthorization/google-response
     // http://34.141.52.221.nip.io/api/GoogleAuthorization/google-response
-    "http://34.141.52.221.nip.io/api/GoogleAuthorization/google-response"
+    "https://localhost:7146/api/GoogleAuthorization/google-response"
   );
 
   useEffect(() => {
