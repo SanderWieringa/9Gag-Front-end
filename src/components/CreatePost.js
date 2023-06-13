@@ -72,7 +72,10 @@ const CreatePost = () => {
         console.log("headers: ", headers)
         console.log("headers.Authorization: ", headers.Authorization)
 
-        axios.post('https://localhost:44329/api/Post', formData, {
+        //https://localhost:44329/api/Post
+        //http://34.141.52.221.nip.io/api/Post
+        //http://acmegag.com/api/Post
+        axios.post('http://34.141.52.221.nip.io/api/Post', formData, {
             headers: headers
         })
         .then((response) => {

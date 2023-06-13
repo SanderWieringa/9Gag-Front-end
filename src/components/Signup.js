@@ -8,7 +8,8 @@ function SignUp() {
       // https://localhost:44394/api/GoogleAuthorization/signup
       // https://localhost:7146/api/GoogleAuthorization/signup
       // http://acmegag.com/api/GoogleAuthorization/signup
-      "http://acmegag.com/api/GoogleAuthorization/signup"
+      // http://34.141.52.221.nip.ioapi/GoogleAuthorization/signup
+      "http://34.141.52.221.nip.io/api/GoogleAuthorization/signup"
     );
 
     useEffect(() => {

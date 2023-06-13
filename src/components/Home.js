@@ -8,6 +8,7 @@ const Home = () => {
         try {
             //http://34.141.52.221.nip.io/api/Post
             //https://localhost:44329/api/Post
+            //http://http://acmegag.com/api/Post
         const response = await fetch('http://34.141.52.221.nip.io/api/Post');
         if (response.ok) {
             const jsonData = await response.json();
