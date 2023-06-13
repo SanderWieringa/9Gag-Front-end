@@ -6,11 +6,14 @@ const Home = () => {
     useEffect(() => {
     const fetchData = async () => {
         try {
-        const response = await fetch('https://localhost:44329/api/Post');
+            //http://34.141.52.221.nip.io/api/Post
+            //https://localhost:44329/api/Post
+        const response = await fetch('http://34.141.52.221.nip.io/api/Post');
         if (response.ok) {
             const jsonData = await response.json();
             setData(jsonData);
             console.log("data: ", data)
+
         } else {
             throw new Error('Request failed with status ' + response.status);
         }
@@ -29,19 +32,11 @@ const Home = () => {
                     <div>
                         <div style={{ height: 580, width: "100%" }}>
                         <table>
-                            <thead>
-                                <tr>
-                                <th>Id</th>
-                                <th>Title</th>
-                                <th>Photo</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 {data.map(item => (
-                                <tr key={item.id}>
-                                    <td>{item.id}</td>
+                                <tr key={item._id}>
                                     <td>{item.title}</td>
-                                    <td>{item.photo}</td>
+                                    <td><img src={"data:image/png;base64," + item.imageFile} /></td>
                                 </tr>
                                 ))}
                             </tbody>
