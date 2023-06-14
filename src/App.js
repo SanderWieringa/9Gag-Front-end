@@ -2,7 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Protected from "./components/Protected";
-import About from "./components/About";
+import DeleteAccount from "./components/DeleteAccount";
 import Profile from "./components/Profile";
 import SignUp from "./components/Signup";
 import SignIn from "./components/Signin";
@@ -38,7 +38,12 @@ function App() {
               //</Protected>
               }
             />
-            <Route path ='/about' element={<About />} />
+            <Route path='/deleteaccount' element={
+              //<Protected isLoggedIn={isLoggedIn}>
+                <DeleteAccount />
+              //</Protected>
+              }
+            />
           </Routes>
       </div>
     </BrowserRouter>

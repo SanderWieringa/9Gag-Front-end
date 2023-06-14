@@ -20,6 +20,9 @@ const Navbar = () => {
       <Link to="/createpost" style={{ padding: "10px" }}>
         Create Post
       </Link>
+      <Link to="/deleteaccount" style={{ padding: "10px" }}>
+        Delete Account
+      </Link>
     </nav>
   );
 };
