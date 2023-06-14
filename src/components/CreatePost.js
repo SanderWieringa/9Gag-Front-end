@@ -75,7 +75,7 @@ const CreatePost = () => {
         //https://localhost:44329/api/Post
         //http://34.141.52.221.nip.io/api/Post
         //http://acmegag.com/api/Post
-        axios.post('http://34.141.52.221.nip.io/api/Post', formData, {
+        axios.post('https://localhost:44329/api/Post', formData, {
             headers: headers
         })
         .then((response) => {

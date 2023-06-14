@@ -42,6 +42,9 @@ const Home = () => {
                                             <tr key={item._id}>
                                                 <td ><img width="100%" height="auto" src={"data:image/png;base64," + item.imageFile} /></td>
                                             </tr>
+                                            <tr key={item._id}>
+                                            <td style={{ fontSize: "40px"}}>{item.userId}</td>
+                                            </tr>
                                         </div>
 
                                     ))}
