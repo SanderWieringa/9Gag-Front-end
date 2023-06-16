@@ -54,6 +54,7 @@ const DeleteAccount = () => {
           })
           .then(response => response.json())
           .then(console.log("succes"))
+          .then(localStorage.removeItem("user"))
           .catch((error) => {
             setError(error?.message);
           })
