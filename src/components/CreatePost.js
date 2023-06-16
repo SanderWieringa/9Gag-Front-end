@@ -52,10 +52,6 @@ const CreatePost = () => {
             return;
         }
 
-        // https://localhost:44329/api/Post
-        // https://localhost:7238/api/Post
-        // http://acmegag.com/api/Post
-
         const formData = new FormData()
         formData.append('Title', values.title)
         formData.append('ImageFile', values.imageFile)
@@ -70,9 +66,6 @@ const CreatePost = () => {
             'accept': 'text/plain',
             'Authorization': 'bearer ' + token
         }
-
-        console.log("headers: ", headers)
-        console.log("headers.Authorization: ", headers.Authorization)
 
         //https://localhost:44329/api/Post
         //http://34.141.52.221.nip.io/api/Post
